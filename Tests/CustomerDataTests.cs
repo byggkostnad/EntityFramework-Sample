@@ -70,13 +70,8 @@ namespace SomeBasicEFApp.Tests
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            string connstr;
-            using (var session = new CoreDbContext())
-            {
-                connstr = session.Database.Connection.ConnectionString;
-            }
             var configuration = new Configuration();
-            configuration.TargetDatabase = new DbConnectionInfo(connstr, "MySql.Data.MySqlClient");
+            configuration.TargetDatabase = new DbConnectionInfo("DefaultConnection");
 
             var migrator = new DbMigrator(configuration);
             migrator.Update();
