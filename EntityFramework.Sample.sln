@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26020.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework.Sample", "EntityFramework.Sample\EntityFramework.Sample.csproj", "{5001CDDC-ACF1-491D-9295-6B1E63EA47BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{6896FBAF-D081-499A-BAE0-92F07A7E123C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5001CDDC-ACF1-491D-9295-6B1E63EA47BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5001CDDC-ACF1-491D-9295-6B1E63EA47BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5001CDDC-ACF1-491D-9295-6B1E63EA47BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5001CDDC-ACF1-491D-9295-6B1E63EA47BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6896FBAF-D081-499A-BAE0-92F07A7E123C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6896FBAF-D081-499A-BAE0-92F07A7E123C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6896FBAF-D081-499A-BAE0-92F07A7E123C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6896FBAF-D081-499A-BAE0-92F07A7E123C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
