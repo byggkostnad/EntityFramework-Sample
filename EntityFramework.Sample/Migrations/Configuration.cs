@@ -7,7 +7,7 @@ namespace EntityFramework.Sample.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            //SetSqlGenerator("System.Data.SQLite",);
+            SetSqlGenerator("MySql.Data.MySqlClient", new MySql.Data.Entity.MySqlMigrationSqlGenerator());
         }
 
         protected override void Seed(EntityFramework.Sample.CoreDbContext context)
