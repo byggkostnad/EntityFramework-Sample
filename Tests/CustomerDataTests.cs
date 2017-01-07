@@ -7,16 +7,13 @@ using EntityFramework.Sample;
 using EntityFramework.Sample.Migrations;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Migrations;
-using System.Threading;
 
 namespace SomeBasicEFApp.Tests
 {
     [TestFixture]
     public class CustomerDataTests
     {
-
         private CoreDbContext _session;
-
 
         [Test]
         public void CanGetCustomerById()
@@ -57,7 +54,7 @@ namespace SomeBasicEFApp.Tests
         [SetUp]
         public void Setup()
         {
-            //_session = new SqlLiteSession(new ConsoleMapPath()).CreateSession("CustomerDataTests.db");
+            _session = new CoreDbContext();
         }
 
 
@@ -70,13 +67,16 @@ namespace SomeBasicEFApp.Tests
             }
         }
 
-        [TestFixtureSetUp]
-        public void TestFixtureSetup()
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
         {
+            string connstr;
+            using (var session = new CoreDbContext())
+            {
+                connstr = session.Database.Connection.ConnectionString;
+            }
             var configuration = new Configuration();
-            configuration.TargetDatabase = new DbConnectionInfo(
-                "",
-                "MySql.Data.MySqlClient");
+            configuration.TargetDatabase = new DbConnectionInfo(connstr, "MySql.Data.MySqlClient");
 
             var migrator = new DbMigrator(configuration);
             migrator.Update();
@@ -84,8 +84,8 @@ namespace SomeBasicEFApp.Tests
             var doc = XDocument.Load(Path.Combine("TestData", "TestData.xml"));
             var import = new XmlImport(doc, "http://tempuri.org/Database.xsd");
             var customer = new List<Customer>();
+            using (var session = new CoreDbContext())
             {
-                CoreDbContext session = null;
                 import.Parse(new[] { typeof(Customer), typeof(Order), typeof(Product) },
                                 (type, obj) =>
                                 {
@@ -107,8 +107,8 @@ namespace SomeBasicEFApp.Tests
                                 });
                 session.SaveChanges();
             }
+            using (var session = new CoreDbContext())
             {
-                CoreDbContext session = null;
                 import.ParseConnections("OrderProduct", "Product", "Order", (productId, orderId) =>
                 {
                     var product = session.Products.Single(p => p.Id == productId);
